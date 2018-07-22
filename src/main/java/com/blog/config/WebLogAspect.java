@@ -52,16 +52,16 @@ public class WebLogAspect {
         log.info("reqId : {}, URL : {}", reqId.get().substring(0,6), request.getRequestURL().toString());
         log.info("reqId : {}, HTTP_METHOD : {}", reqId.get().substring(0,6), request.getMethod());
         log.info("reqId : {}, IP : {}", reqId.get().substring(0,6), request.getRemoteAddr());
-        log.info("reqId : {}, CLASS_METHOD : {}", reqId.get(), joinPoint.getSignature().getDeclaringTypeName() + "." + joinPoint.getSignature().getName());
-        log.info("reqId : {}, ARGS : {}", reqId.get(), Arrays.toString(joinPoint.getArgs()));
+        log.info("reqId : {}, CLASS_METHOD : {}", reqId.get().substring(0,6), joinPoint.getSignature().getDeclaringTypeName() + "." + joinPoint.getSignature().getName());
+        log.info("reqId : {}, ARGS : {}", reqId.get().substring(0,6), Arrays.toString(joinPoint.getArgs()));
 
     }
 
     @AfterReturning(returning = "ret", pointcut = "webLog()")
     public void doAfterReturning(Object ret) throws Throwable {
         // 处理完请求，返回内容  
-        log.info("reqId : {}, RESPONSE : {}", reqId.get(), JSON.toJSONString(ret));
-        log.info("reqId : {}, SPEND TIME : {}", reqId.get(),(System.currentTimeMillis() - startTime.get()));
+        log.info("reqId : {}, RESPONSE : {}", reqId.get().substring(0,6), JSON.toJSONString(ret));
+        log.info("reqId : {}, SPEND TIME : {}", reqId.get().substring(0,6),(System.currentTimeMillis() - startTime.get()));
     }
 
 }
