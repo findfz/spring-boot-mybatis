@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+
+    <context id="Mysql" targetRuntime="MyBatis3Simple" defaultModelType="flat">
+        <property name="javaFileEncoding" value="UTF-8"/>
+        <property name="beginningDelimiter" value="`"/>
+        <property name="endingDelimiter" value="`"/>
+
+        <plugin type="tk.mybatis.mapper.generator.MapperPlugin">
+            <property name="mappers" value="com.blog.util.BaseMapper"/>
+        </plugin>
+
+        <!--根据具体情况修改数据库配置 -->
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver"
+                        connectionURL="jdbc:mysql://localhost:3306/test"
+                        userId="root"
+                        password="199272xz"/>
+
+        <!--根据具体情况修改子模块java实体文件包名，com.blog.xxx.model -->
+        <javaModelGenerator targetPackage="com.blog.user.entity" targetProject="${targetJavaProject}"/>
+        <!--根据具体情况修改子模块java文件包名，mapper/xxx -->
+        <sqlMapGenerator targetPackage="mapper/user" targetProject="${targetResourcesProject}"/>
+        <!--根据具体情况修改子模块java mapper文件包名，com.blog.**.mapper -->
+        <javaClientGenerator targetPackage="com.blog.user.mapper" targetProject="${targetJavaProject}"
+                             type="XMLMAPPER"/>
+
+        <!--根据具体情况修改表名和实体名称，t_xxx_yyy -->
+		<table tableName="tbl_user" domainObjectName="User">
+
+        </table>
+
+    </context>
+</generatorConfiguration>
