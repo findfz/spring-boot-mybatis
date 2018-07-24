@@ -21,10 +21,17 @@ public class UserController {
     @Autowired
     private UserService userService;
 
+    /**
+     * 分页查询
+     * @param pageNo 当前页数
+     * @param pageSize 分页条数
+     * @return
+     */
     @GetMapping("/findByPage")
     public PageInfo<User> findByPage(int pageNo,int pageSize){
         Page<User> userPage = userService.findByPage(pageNo,pageSize);
         PageInfo<User> pageInfo = new PageInfo<>(userPage);
         return pageInfo;
     }
+
 }
