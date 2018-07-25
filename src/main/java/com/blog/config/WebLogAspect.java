@@ -31,6 +31,7 @@ public class WebLogAspect {
 
     ThreadLocal<Long> startTime = new ThreadLocal<>();
 
+    //当请求日志过多，交错打印时，难以区分请求对应的返回，故加上一个reqId便于对应
     ThreadLocal<String> reqId = new ThreadLocal<>();
 
     //如果你需要拦截指定package指定规则名称的方法，可以使用表达式execution(...)
@@ -46,6 +47,7 @@ public class WebLogAspect {
         ServletRequestAttributes attributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
         HttpServletRequest request = attributes.getRequest();
 
+        //MDC配合logback配置使用
         MDC.put("userId",123456);
 
         // 记录下请求内容,使用{}占位符。避免字符串连接操作，减少String对象（不可变）带来的内存开销
